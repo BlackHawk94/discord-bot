@@ -17,7 +17,6 @@ client = discord.Client()
 games = {}
 
 PORT = int(os.environ.get('PORT', '5000'))
-updater = Updater(POKER_BOT_TOKEN)
 
 updater.start_webhook(listen="0.0.0.0",
                     port=PORT,
