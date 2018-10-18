@@ -5,8 +5,6 @@ from subprocess import Popen
 
 import discord
 import random
-import socket
-import sys
 
 from game import Game, GAME_OPTIONS, GameState
 
@@ -18,14 +16,6 @@ with open("token.txt", "r") as f:
 
 client = discord.Client()
 games = {}
-
-# Create a TCP/IP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# Bind the socket to the port
-server_address = ('0.0.0.0', 10000)
-print >>sys.stderr, 'starting up on %s port %s' % server_address
-sock.bind(server_address)
 
 # Starts a new game if one hasn't been started yet, returning an error message
 # if a game has already been started. Returns the messages the bot should say
