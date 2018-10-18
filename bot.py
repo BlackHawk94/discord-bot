@@ -5,8 +5,11 @@ from subprocess import Popen
 
 import discord
 import random
+import socket
+import sys
 
 from game import Game, GAME_OPTIONS, GameState
+
 import pot
 
 POKER_BOT_TOKEN = ""
@@ -16,13 +19,8 @@ with open("token.txt", "r") as f:
 client = discord.Client()
 games = {}
 
-PORT = int(os.environ.get('PORT', '5000'))
-
-updater.start_webhook(listen="0.0.0.0",
-                    port=PORT,
-                    url_path=POKER_BOT_TOKEN)
-updater.bot.setWebhook("https://myappname.herokuapp.com/" + POKER_BOT_TOKEN)
-updater.idle()
+# Create a TCP/IP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Starts a new game if one hasn't been started yet, returning an error message
 # if a game has already been started. Returns the messages the bot should say
